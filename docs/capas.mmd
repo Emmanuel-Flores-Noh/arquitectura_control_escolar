@@ -1,0 +1,39 @@
+---
+config:
+  theme: redux-color
+---
+flowchart LR
+    subgraph CapaPresentacion["Capa de Presentación"]
+        ControlEscolarVista["ControlEscolarVista"]
+        ControlEscolarControlador["ControlEscolarControlador"]
+    end
+
+    subgraph CapaBroker["Capa Broker"]
+        ControlEscolarBroker["ControlEscolarBroker"]
+        RespuestaBroker["RespuestaBroker"]
+    end
+
+    subgraph CapaNegocio["Capa de Negocio"]
+        AlumnoServicio["AlumnoServicio"]
+    end
+
+    subgraph CapaPersistencia["Capa de Persistencia"]
+        AlumnoDAOJson["AlumnoDAOJson"]
+    end
+
+    CapaPresentacion --> CapaBroker
+    CapaBroker --> CapaNegocio
+    CapaNegocio --> CapaPersistencia
+
+    subgraph CapaModelo["Modelos"]
+        Alumno["Alumno"]
+        Calificacion["Calificacion"]
+        Reporte["Reporte"]
+    end
+
+    subgraph CapaExcepciones["Excepciones"]
+        ControlEscolarException["ControlEscolarException"]
+        ValidacionException["ValidacionException"]
+        RecursoNoEncontradoException["RecursoNoEncontradoException"]
+        GestorErrores["GestorErrores"]
+    end
